@@ -8,11 +8,14 @@ function getComputerChoice() {
     let compNum = Math.round(Math.random() * 120);
     if (compNum <= 40) {
         compChoice = "ROCK"; 
-    }
-    else if (compNum > 40 && compNum <= 80){
+    } else if (
+        compNum > 40 && 
+        compNum <= 80
+    ){
         compChoice = "PAPER";
-    }
-    else if (compNum > 80) {
+    } else if (
+        compNum > 80
+    ) {
         compChoice = "SCISSORS";
     }
     return compChoice;
@@ -23,7 +26,11 @@ function getHumanChoice() {
     do{
     let userInput = prompt("Choose your hand: ");
     humanChoice = userInput.toUpperCase();
-    } while ((humanChoice !== "ROCK") && (humanChoice !== "PAPER") && (humanChoice !== "SCISSORS"));
+    } while (
+        (humanChoice !== "ROCK") && 
+        (humanChoice !== "PAPER") && 
+        (humanChoice !== "SCISSORS")
+    );
     return humanChoice;
 }
 
@@ -32,14 +39,24 @@ function playRound() {
     const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
     console.log(`Player selects: ${humanSelection}\nComputer selects: ${computerSelection}`);
-    if ((humanSelection == "ROCK" && computerSelection == "ROCK") || (humanSelection == "PAPER" && computerSelection == "PAPER") || (humanSelection == "SCISSORS" && computerSelection == "SCISSORS")) {
+    if (
+        (humanSelection == "ROCK" && computerSelection == "ROCK") || 
+        (humanSelection == "PAPER" && computerSelection == "PAPER") || 
+        (humanSelection == "SCISSORS" && computerSelection == "SCISSORS")
+    ) {
         console.log(`TIE round. ${humanSelection} and ${humanSelection} don't beat each other!`);
-    }
-    else if ((humanSelection == "ROCK" && computerSelection == "SCISSORS") || (humanSelection == "PAPER" && computerSelection == "ROCK") || (humanSelection == "SCISSORS" && computerSelection == "PAPER")) {
+    } else if (
+        (humanSelection == "ROCK" && computerSelection == "SCISSORS") || 
+        (humanSelection == "PAPER" && computerSelection == "ROCK") || 
+        (humanSelection == "SCISSORS" && computerSelection == "PAPER")
+    ) {
         console.log(`PLAYER wins. ${humanSelection} beats ${computerSelection}!`);
         humanScore++;
-    }
-    else if ((computerSelection == "ROCK" && humanSelection == "SCISSORS") || (computerSelection == "PAPER" && humanSelection == "ROCK") || (computerSelection == "SCISSORS" && humanSelection == "PAPER")) {
+    } else if (
+        (computerSelection == "ROCK" && humanSelection == "SCISSORS") || 
+        (computerSelection == "PAPER" && humanSelection == "ROCK") || 
+        (computerSelection == "SCISSORS" && humanSelection == "PAPER")
+    ) {
         console.log(`COMPUTER wins. ${computerSelection} beats ${humanSelection}!`);
         computerScore++;
     }
@@ -48,7 +65,7 @@ function playRound() {
 // play a full match (five rounds) of rock, paper, scissors and declare winner or tie.
 function playGame() {
     const totalRounds = 5;
-    for (let x = 0; x < 5; x++){
+    for (let x = 0; x < totalRounds; x++){
         playRound();
     }
     console.log(`PLAYER SCORE: ${humanScore}\nCOMPUTER SCORE: ${computerScore}`);
