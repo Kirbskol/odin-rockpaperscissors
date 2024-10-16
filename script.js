@@ -1,4 +1,8 @@
-    // uses random number * 120 to determine computerChoice
+// scoreboard variables
+humanScore = 0;
+computerScore = 0;
+
+// uses random number * 120 to determine computerChoice
 function getComputerChoice() {
     let compChoice = [];
     let compNum = Math.round(Math.random() * 120);
