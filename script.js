@@ -1,16 +1,22 @@
+    // uses random number * 120 to determine computerChoice
 function getComputerChoice() {
-    // create blank string named compChoice, generate random number and times by 120 (divisible by 3)
-    // then create if statement to decide whether CPU chooses rock, paper or scissors.
     let compChoice = [];
     let compNum = Math.round(Math.random() * 120);
     if (compNum <= 40) {
-        compChoice = "Rock"; 
+        compChoice = "ROCK"; 
     }
     else if (compNum > 40 && compNum <= 80){
-        compChoice = "Paper";
+        compChoice = "PAPER";
     }
     else if (compNum > 80) {
-        compChoice = "Scissors";
+        compChoice = "SCISSORS";
     }
-    console.log(compChoice);
+}
+  // obtains user input for humanChoice, re-prompts if not valid input
+function getHumanChoice() {
+    let humanChoice;
+    do{
+    let userInput = prompt("Choose your hand: ");
+    humanChoice = userInput.toUpperCase();
+    } while ((humanChoice !== "ROCK") && (humanChoice !== "PAPER") && (humanChoice !== "SCISSORS"));
 }
