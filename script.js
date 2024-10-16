@@ -44,3 +44,23 @@ function playRound() {
         computerScore++;
     }
 }
+
+// play a full match (five rounds) of rock, paper, scissors.
+function playGame() {
+    const totalRounds = 5;
+    for (let x = 0; x < 5; x++){
+        playRound();
+    }
+    console.log(`PLAYER SCORE: ${humanScore}\nCOMPUTER SCORE: ${computerScore}`);
+    if (humanScore > computerScore) {
+        console.log("*** PLAYER WINS ***")
+    }
+    else if (humanScore < computerScore) {
+        console.log("*** COMPUTER WINS ***")
+    }
+    else if (humanScore == computerScore) {
+        console.log("*** NO-ONE WINS, TIE GAME ***")
+    }
+    computerScore = 0;
+    humanScore = 0;
+}
