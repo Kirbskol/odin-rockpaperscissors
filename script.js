@@ -45,7 +45,7 @@ function playRound() {
     }
 }
 
-// play a full match (five rounds) of rock, paper, scissors.
+// play a full match (five rounds) of rock, paper, scissors and declare winner or tie.
 function playGame() {
     const totalRounds = 5;
     for (let x = 0; x < 5; x++){

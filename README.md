@@ -2,7 +2,8 @@
 
 This relates to the third project of The Odin Project, which is also the first within the Javascript Foundations Course.
 
-For this project I will initially be creating the game Rock Paper Scissors, whereby the user will play against the computer.
-This game will be run entirely through the console.log function.
+The game is fully played within the console.log, as per the specifications of the project.
 
-** Work in progress **
+For this project I have been tasked to create a game of rock paper scissors, which lasts five rounds, and obtains input from the user
+as well as generates a random hand for the CPU each round. A scoreboard tracker is implented to track the scores after each round, and ultimately
+a winner is announced or a tie game.
