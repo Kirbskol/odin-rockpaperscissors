@@ -2,6 +2,14 @@
 humanScore = 0;
 computerScore = 0;
 
+function playGame() {
+    const totalRounds = 5;
+    for (let x = 0; x < totalRounds; x++){
+        playRound();
+    }
+    getResult();
+}
+
 /* uses random number generated * 120 to determine computerChoice, this is
  * due to 120 being divisible by three (three possible choices of hand)
  */
@@ -55,24 +63,20 @@ function playRound() {
         (humanSelection == "PAPER" && computerSelection == "ROCK") || 
         (humanSelection == "SCISSORS" && computerSelection == "PAPER")
     ) {
-        console.log(`PLAYER wins. ${humanSelection} beats ${computerSelection}!`);
+        console.log(`PLAYER wins the round. ${humanSelection} beats ${computerSelection}!`);
         humanScore++;
     } else if (
         (computerSelection == "ROCK" && humanSelection == "SCISSORS") || 
         (computerSelection == "PAPER" && humanSelection == "ROCK") || 
         (computerSelection == "SCISSORS" && humanSelection == "PAPER")
     ) {
-        console.log(`COMPUTER wins. ${computerSelection} beats ${humanSelection}!`);
+        console.log(`COMPUTER wins the round. ${computerSelection} beats ${humanSelection}!`);
         computerScore++;
     }
+    console.log(`PLAYER SCORE: ${humanScore}\nCOMPUTER SCORE: ${computerScore}`);
 }
 
-function playGame() {
-    const totalRounds = 5;
-    for (let x = 0; x < totalRounds; x++){
-        playRound();
-    }
-    console.log(`PLAYER SCORE: ${humanScore}\nCOMPUTER SCORE: ${computerScore}`);
+function getResult() {
     if (humanScore > computerScore) {
         console.log("*** PLAYER WINS ***")
     }
