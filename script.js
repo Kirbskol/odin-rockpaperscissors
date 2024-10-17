@@ -1,8 +1,10 @@
-// scoreboard variables
+// scoreboard variables are set to global as used across multiple functions
 humanScore = 0;
 computerScore = 0;
 
-// uses random number * 120 to determine computerChoice
+/* uses random number generated * 120 to determine computerChoice, this is
+ * due to 120 being divisible by three (three possible choices of hand)
+ */
 function getComputerChoice() {
     let compChoice = [];
     let compNum = Math.round(Math.random() * 120);
@@ -20,7 +22,11 @@ function getComputerChoice() {
     }
     return compChoice;
 }
-  // obtains user input for humanChoice, re-prompts if not valid input
+
+/* 
+ * while loop used so only user input of "ROCK", "PAPER" or "SCISSORS" 
+ * is accepted (this is case insensitive as input changed toUpperCase) 
+ */
 function getHumanChoice() {
     let humanChoice;
     do{
@@ -34,7 +40,6 @@ function getHumanChoice() {
     return humanChoice;
 }
 
-// play a single round of rock, paper, scissors.
 function playRound() {
     const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
@@ -62,7 +67,6 @@ function playRound() {
     }
 }
 
-// play a full match (five rounds) of rock, paper, scissors and declare winner or tie.
 function playGame() {
     const totalRounds = 5;
     for (let x = 0; x < totalRounds; x++){
