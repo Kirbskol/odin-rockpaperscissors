@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odin - Rock Paper Scissors</title>
+    <title>Kirbskol - Rock Paper Scissors</title>
+    <link rel="stylesheet" type="text/css" href="style.css" title="style">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <script src="./script.js"></script>
+    <h1 id="heading">Rock Paper Scissors!</h1>
+    <h3 id="heading__desc">First to FIVE POINTS wins</h3>
+    <div id="container">
+        <div class="scoreboard">
+            <div class="scoreboard__user">
+                <div class="scoreboard__user__score"></div>
+                <span class="scoreboard__user__title">User</span>
+            </div>
+            <div class="scoreboard__cpu">
+                <div class="scoreboard__cpu__score"></div>
+                <span class="scoreboard__cpu__title">Computer</span>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="controls__rock">
+                <button class="controls__rock__btn"><img src="./images/rockbtn.png" alt="rock"></button>
+            </div>
+            <div class="controls__paper">
+                <button class="controls__paper__btn"><img src="./images/paperbtn.png" alt="rock"></button>
+            </div>
+            <div class="controls__rock">
+                <button class="controls__scissors__btn"><img src="./images/scissorsbtn.png" alt="rock"></button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

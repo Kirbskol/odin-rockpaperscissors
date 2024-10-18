@@ -1,0 +1,64 @@
+body {
+    font-family: Agdasima;
+    background-color: #ffe39c;
+    text-align: center;
+    color: #db002f;
+}
+
+#heading {
+   display: flex;
+   justify-content: center;
+   font-size: 68px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+}
+
+.scoreboard {
+    gap: 50px;
+}
+
+.scoreboard, .scoreboard__user, .scoreboard__cpu {
+    display: flex;
+    justify-content: center;
+}
+
+.scoreboard__user, .scoreboard__cpu {
+    flex-direction: column;
+    align-items: center;
+}
+
+.scoreboard__user__score, .scoreboard__cpu__score {
+    border: 4px solid #db002f;
+    border-radius: 25px;
+    font-size: 100px;
+    width: 100px;
+    height: auto;
+    flex: auto;
+}
+
+.scoreboard__user__title, .scoreboard__cpu__title {
+    font-size: 30px;
+}
+
+.controls {
+    padding: 60px;
+    display: flex;
+    justify-content: center;
+    /* gap: 20px; */
+}
+
+.controls button {
+    background-color: transparent;
+    border: transparent;
+    gap: 10px;
+}
+
+.controls img {
+    width:50%;
+    min-width: 100px;
+    height: auto;
+}

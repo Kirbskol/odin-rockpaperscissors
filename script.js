@@ -89,3 +89,13 @@ function getResult() {
     computerScore = 0;
     humanScore = 0;
 }
+
+// UI elements (work in progress)
+const container = document.querySelector("#container");
+
+const scoreboard = document.querySelector(".scoreboard");
+const scoreboardUser = document.querySelector(".scoreboard__user__score");
+const scoreboardCpu = document.querySelector(".scoreboard__cpu__score");
+scoreboardUser.textContent = `${humanScore}`;
+scoreboardCpu.textContent = `${computerScore}`;
+
