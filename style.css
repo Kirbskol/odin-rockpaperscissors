@@ -75,10 +75,13 @@ body {
 }
 
 #start__input {
+    font-family: Agdasima;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     border-radius: 25px;
     background-color: #ffe39c;
     border: 4px solid #db002f;
-    box-shadow: 0 0 20px #db002f;
+    box-shadow: 0 0 4px #db002f;
     color: #db002f;
     width: 80%;
     max-width: 500px;
@@ -107,7 +110,7 @@ input:focus::placeholder {
     border-radius: 20px;
     background-color: #db002f;
     border: 4px solid #ffe39c;
-    box-shadow: 0 0 20px #db002f;
+    box-shadow: 0 0 4px #db002f;
     color: #ffe39c;
     width: 80%;
     max-width: 250px;
@@ -118,6 +121,7 @@ input:focus::placeholder {
     text-align: center;
     align-self: center;
     flex: 0, 1, auto;
+    font-family: Agdasima;
 }
 
 .start__btn:hover {
@@ -134,6 +138,57 @@ input:focus::placeholder {
     flex: auto;
 }
 
+.result {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-self: center;
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border: 4px solid #db002f;
+    border-radius: 25px;
+}
+
+.result__winner {
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.result__choices {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.result__btn {
+    font-weight: 900;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: #db002f;
+    border: 4px solid #ffe39c;
+    box-shadow: 0 0 4px #db002f;
+    color: #ffe39c;
+    width: 80%;
+    max-width: 250px;
+    min-width: 0;
+    height: auto;
+    max-height: 80px;
+    font-size: 25px;
+    text-align: center;
+    align-self: center;
+    flex: 0, 1, auto;
+    font-family: Agdasima;
+}
+
+.result__btn:hover {
+    background-color: #ffe39c;
+    border: 4px solid #db002f;
+    box-shadow: 0 0 4px #db002f;
+    color: #db002f;
+    cursor: pointer;
+}
+
 .scoreboard {
     gap: 50px;
 }
@@ -142,6 +197,13 @@ input:focus::placeholder {
     display: flex;
     justify-content: center;
 }
+
+.scoreboard__update {
+    width: 100%;
+    height: auto;
+    border: 4px solid #db002f;
+    border-radius: 25px;
+} 
 
 .scoreboard__user, .scoreboard__cpu {
     flex-direction: column;

@@ -43,6 +43,10 @@ computerScore = 0;
 const scoreboard = document.querySelector(".scoreboard");
 const scoreboardUser = document.querySelector(".scoreboard__user__score");
 const scoreboardCpu = document.querySelector(".scoreboard__cpu__score");
+const result = document.querySelector(".result");
+const resultChoices = document.querySelector(".result__choices");
+const resultWinner = document.querySelector(".result__winner");
+const resultWinnerMethod = document.querySelector(".result__winner__method");
 scoreboardUser.textContent = `${humanScore}`;
 scoreboardCpu.textContent = `${computerScore}`;
 
@@ -77,6 +81,13 @@ function playRound() {
         (humanSelection == "PAPER" && computerSelection == "PAPER") || 
         (humanSelection == "SCISSORS" && computerSelection == "SCISSORS")
     ) {
+        scoreboard.style.display = "none";
+        headingDesc.style.display = "none";
+        rockBtn.style.display = "none";
+        paperBtn.style.display = "none";
+        scissorsBtn.style.display = "none";
+        resultWinner.textContent = `TIE ROUND.`
+        resultChoices.textContent = `${humanSelection} AND ${computerSelection} DON'T BEAT EACH OTHER!`;
         console.log(`TIE round. ${humanSelection} and ${humanSelection} don't beat each other!`);
     } else if (
         (humanSelection == "ROCK" && computerSelection == "SCISSORS") || 
