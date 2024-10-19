@@ -13,7 +13,6 @@ body {
    width: 100%;
    height: auto;
    margin: 0;
-   flex-wrap: wrap;
 }
 
 .heading__empty {
@@ -172,6 +171,7 @@ input:focus::placeholder {
 .controls button {
     background-color: transparent;
     border: transparent;
+    cursor: pointer;
 }
 
 .controls img {

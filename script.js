@@ -1,7 +1,7 @@
 // home screen functions
 let i = 0;
 let placeholder = "";
-const txt = "ENTER YOUR NAME";
+const txt = "NAME...";
 const speed = 150;
 
 function type(){
@@ -17,13 +17,20 @@ type();
 const startBtn = document.querySelector(".start__btn");
 const start = document.querySelector(".start");
 const container = document.querySelector("#container");
+const headingDesc = document.querySelector(".heading__desc");
 const displayUser = document.querySelector(".scoreboard__user__title")
 let userNameRaw = "";
 let userName = "";
 startBtn.addEventListener("click", () => {
     userNameRaw = document.getElementById("start__input").value;
     userName = userNameRaw.toUpperCase();
+    let userNameLen = userName.length;
+    if (userNameLen < 1){
+        alert("Enter your name to continue!")
+        return;
+    }
     start.style.display = "none";
+    headingDesc.style.display = "block";
     container.style.display = "flex";
     displayUser.textContent = `${userName}`;
 })
@@ -33,7 +40,6 @@ humanScore = 0;
 computerScore = 0;
 
 // UI elements (work in progress)
-
 const scoreboard = document.querySelector(".scoreboard");
 const scoreboardUser = document.querySelector(".scoreboard__user__score");
 const scoreboardCpu = document.querySelector(".scoreboard__cpu__score");
