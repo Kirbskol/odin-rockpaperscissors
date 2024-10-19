@@ -22,6 +22,7 @@ type();
 const startBtn = document.querySelector(".start__btn");
 const start = document.querySelector(".start");
 const container = document.querySelector("#container");
+const canvas = document.querySelector('#confetti');
 const headingDesc = document.querySelector(".heading__desc");
 const displayUser = document.querySelector(".scoreboard__user__title")
 let userNameRaw = "";
@@ -128,43 +129,6 @@ function playRound() {
     }
 }
 
-resultBtn.addEventListener("click", () => {
-    result.style.display = "none";
-    scoreboard.style.display = "flex";
-    headingDesc.style.display = "block";
-    rockBtn.style.display = "flex";
-    paperBtn.style.display = "flex";
-    scissorsBtn.style.display = "flex";
-});
-
-function checkWinner() {
-    if (humanScore === 5 || computerScore === 5){
-        resultBtn.textContent = "NEW GAME";
-        scoreboard.style.display = "none";
-        headingDesc.style.display = "none";
-        rockBtn.style.display = "none";
-        paperBtn.style.display = "none";
-        scissorsBtn.style.display = "none";
-        result.style.display = "flex";
-        if (humanScore === 5){
-            resultWinner.textContent = `${userName} IS THE CHAMPION!`;
-            resultChoices.textContent = `BEATING THE COMPUTER BY ${humanScore} TO ${computerScore}`;
-        }
-        if (computerScore === 5){
-            resultWinner.textContent = `YOU LOSE! COMPUTER IS THE CHAMPION!`;
-            resultChoices.textContent = `COMPUTER BEATS ${userName} BY ${computerScore} TO ${humanScore}`;
-        }
-        resultBtn.addEventListener("click", () => {
-            container.style.display = "none";
-            headingDesc.style.display = "none";
-            start.style.display = "flex";
-        });
-    }
-    else {
-        return;
-    }
-}
-
 /* uses random number generated * 120 to determine computerChoice, this is
  * due to 120 being divisible by three (three possible choices of hand)
  */
@@ -186,66 +150,52 @@ function getComputerChoice() {
     return compChoice;
 }
 
-/* 
- * while loop used so only user input of "ROCK", "PAPER" or "SCISSORS" 
- * is accepted (this is case insensitive as input changed toUpperCase) 
- */
-// function getHumanChoice() {
-//     let humanChoice;
-//     do{
-//     let userInput = prompt("Choose your hand: ");
-//     humanChoice = userInput.toUpperCase();
-//     } while (
-//         (humanChoice !== "ROCK") && 
-//         (humanChoice !== "PAPER") && 
-//         (humanChoice !== "SCISSORS")
-//     );
-//     return humanChoice;
-// }
+resultBtn.addEventListener("click", () => {
+    result.style.display = "none";
+    scoreboard.style.display = "flex";
+    headingDesc.style.display = "block";
+    rockBtn.style.display = "flex";
+    paperBtn.style.display = "flex";
+    scissorsBtn.style.display = "flex";
+});
 
-// function playRound() {
-//     const humanSelection = getHumanChoice();
-//     const computerSelection = getComputerChoice();
-//     console.log(`Player selects: ${humanSelection}\nComputer selects: ${computerSelection}`);
-//     if (
-//         (humanSelection == "ROCK" && computerSelection == "ROCK") || 
-//         (humanSelection == "PAPER" && computerSelection == "PAPER") || 
-//         (humanSelection == "SCISSORS" && computerSelection == "SCISSORS")
-//     ) {
-//         console.log(`TIE round. ${humanSelection} and ${humanSelection} don't beat each other!`);
-//     } else if (
-//         (humanSelection == "ROCK" && computerSelection == "SCISSORS") || 
-//         (humanSelection == "PAPER" && computerSelection == "ROCK") || 
-//         (humanSelection == "SCISSORS" && computerSelection == "PAPER")
-//     ) {
-//         console.log(`PLAYER wins the round. ${humanSelection} beats ${computerSelection}!`);
-//         humanScore++;
-//     } else if (
-//         (computerSelection == "ROCK" && humanSelection == "SCISSORS") || 
-//         (computerSelection == "PAPER" && humanSelection == "ROCK") || 
-//         (computerSelection == "SCISSORS" && humanSelection == "PAPER")
-//     ) {
-//         console.log(`COMPUTER wins the round. ${computerSelection} beats ${humanSelection}!`);
-//         computerScore++;
-//     }
-//     console.log(`PLAYER SCORE: ${humanScore}\nCOMPUTER SCORE: ${computerScore}`);
-// }
+function checkWinner() {
+    if (humanScore === 5 || computerScore === 5){
+        getWinner();
+    }
+    else {
+        return;
+    }
+}
 
-// function getResult() {
-//     if (humanScore > computerScore) {
-//         console.log("*** PLAYER WINS ***")
-//     }
-//     else if (humanScore < computerScore) {
-//         console.log("*** COMPUTER WINS ***")
-//     }
-//     else if (humanScore == computerScore) {
-//         console.log("*** NO-ONE WINS, TIE GAME ***")
-//     }
-//     computerScore = 0;
-//     humanScore = 0;
-// }
+function getWinner(){
+    resultBtn.textContent = "NEW GAME";
+    scoreboard.style.display = "none";
+    headingDesc.style.display = "none";
+    rockBtn.style.display = "none";
+    paperBtn.style.display = "none";
+    scissorsBtn.style.display = "none";
+    result.style.display = "flex";
+    if (humanScore === 5){
+        resultWinner.textContent = `${userName} IS THE CHAMPION!`;
+        resultChoices.textContent = `BEATING THE COMPUTER BY ${humanScore} TO ${computerScore}`;
+    }
+    if (computerScore === 5){
+        resultWinner.textContent = `LOSER! COMPUTER IS THE CHAMPION!`;
+        resultChoices.textContent = `COMPUTER BEATS ${userName} BY ${computerScore} TO ${humanScore}`;
+    }
+    resultBtn.addEventListener("click", () => {
+        container.style.display = "none";
+        headingDesc.style.display = "none";
+        start.style.display = "flex";
+    });
+    confetti();
+}
 
+const jsConfetti = new JSConfetti();
 
-
-
-
+function confetti() {
+    jsConfetti.addConfetti({
+        emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+    }).then(() => jsConfetti.addConfetti())
+}
