@@ -1,3 +1,8 @@
+// scoreboard variables are set to global as used across multiple functions
+let humanScore = 0;
+let computerScore = 0;
+let noScore = 0;
+
 // home screen functions
 let i = 0;
 let placeholder = "";
@@ -29,15 +34,15 @@ startBtn.addEventListener("click", () => {
         alert("Enter your name to continue!")
         return;
     }
+    // scoreboard variables are set to global as used across multiple functions
+    humanScore = 0;
+    computerScore = 0;
+    noScore = 0;
     start.style.display = "none";
     headingDesc.style.display = "block";
     container.style.display = "flex";
     displayUser.textContent = `${userName}`;
 })
-
-// scoreboard variables are set to global as used across multiple functions
-humanScore = 0;
-computerScore = 0;
 
 // UI elements (work in progress)
 const scoreboard = document.querySelector(".scoreboard");
@@ -46,7 +51,7 @@ const scoreboardCpu = document.querySelector(".scoreboard__cpu__score");
 const result = document.querySelector(".result");
 const resultChoices = document.querySelector(".result__choices");
 const resultWinner = document.querySelector(".result__winner");
-const resultWinnerMethod = document.querySelector(".result__winner__method");
+const resultBtn = document.querySelector(".result__btn");
 scoreboardUser.textContent = `${humanScore}`;
 scoreboardCpu.textContent = `${computerScore}`;
 
@@ -59,14 +64,17 @@ let humanChoice = "";
 
 rockBtn.addEventListener("click", () => {
     humanChoice = "ROCK";
+    checkWinner();
     playRound();
     });
 paperBtn.addEventListener("click", () => {
     humanChoice = "PAPER";
+    checkWinner();
     playRound();
     });
 scissorsBtn.addEventListener("click", () => {
     humanChoice = "SCISSORS";
+    checkWinner();
     playRound();
     });
 
@@ -75,39 +83,85 @@ function playRound() {
     while (humanScore != 5 && computerScore != 5){
     const humanSelection = humanChoice;
     const computerSelection = getComputerChoice();
+    scoreboard.style.display = "none";
+    headingDesc.style.display = "none";
+    rockBtn.style.display = "none";
+    paperBtn.style.display = "none";
+    scissorsBtn.style.display = "none";
+    result.style.display = "flex";
     console.log(`Player selects: ${humanSelection}\nComputer selects: ${computerSelection}`);
     if (
         (humanSelection == "ROCK" && computerSelection == "ROCK") || 
         (humanSelection == "PAPER" && computerSelection == "PAPER") || 
         (humanSelection == "SCISSORS" && computerSelection == "SCISSORS")
     ) {
-        scoreboard.style.display = "none";
-        headingDesc.style.display = "none";
-        rockBtn.style.display = "none";
-        paperBtn.style.display = "none";
-        scissorsBtn.style.display = "none";
+        result.style.display = "flex";
         resultWinner.textContent = `TIE ROUND.`
         resultChoices.textContent = `${humanSelection} AND ${computerSelection} DON'T BEAT EACH OTHER!`;
-        console.log(`TIE round. ${humanSelection} and ${humanSelection} don't beat each other!`);
+        checkWinner();
+        return noScore;
     } else if (
         (humanSelection == "ROCK" && computerSelection == "SCISSORS") || 
         (humanSelection == "PAPER" && computerSelection == "ROCK") || 
         (humanSelection == "SCISSORS" && computerSelection == "PAPER")
     ) {
-        console.log(`PLAYER wins the round. ${humanSelection} beats ${computerSelection}!`);
-        humanScore++;
+        result.style.display = "flex";
+        resultWinner.textContent = `${userName} WINS THE ROUND!`;
+        resultChoices.textContent = `${humanSelection} beats ${computerSelection}!`;
+        ++humanScore;
         scoreboardUser.textContent = `${humanScore}`;
+        checkWinner();
         return humanScore;
     } else if (
         (computerSelection == "ROCK" && humanSelection == "SCISSORS") || 
         (computerSelection == "PAPER" && humanSelection == "ROCK") || 
         (computerSelection == "SCISSORS" && humanSelection == "PAPER")
     ) {
-        console.log(`COMPUTER wins the round. ${computerSelection} beats ${humanSelection}!`);
-        computerScore++;
+        result.style.display = "flex";
+        resultWinner.textContent = `COMPUTER WINS THE ROUND!`;
+        resultChoices.textContent = `${computerSelection} beats ${humanSelection}!`;
+        ++computerScore;
         scoreboardCpu.textContent = `${computerScore}`;
+        checkWinner();
         return computerScore;
     };
+    }
+}
+
+resultBtn.addEventListener("click", () => {
+    result.style.display = "none";
+    scoreboard.style.display = "flex";
+    headingDesc.style.display = "block";
+    rockBtn.style.display = "flex";
+    paperBtn.style.display = "flex";
+    scissorsBtn.style.display = "flex";
+});
+
+function checkWinner() {
+    if (humanScore === 5 || computerScore === 5){
+        resultBtn.textContent = "NEW GAME";
+        scoreboard.style.display = "none";
+        headingDesc.style.display = "none";
+        rockBtn.style.display = "none";
+        paperBtn.style.display = "none";
+        scissorsBtn.style.display = "none";
+        result.style.display = "flex";
+        if (humanScore === 5){
+            resultWinner.textContent = `${userName} IS THE CHAMPION!`;
+            resultChoices.textContent = `BEATING THE COMPUTER BY ${humanScore} TO ${computerScore}`;
+        }
+        if (computerScore === 5){
+            resultWinner.textContent = `YOU LOSE! COMPUTER IS THE CHAMPION!`;
+            resultChoices.textContent = `COMPUTER BEATS ${userName} BY ${computerScore} TO ${humanScore}`;
+        }
+        resultBtn.addEventListener("click", () => {
+            container.style.display = "none";
+            headingDesc.style.display = "none";
+            start.style.display = "flex";
+        });
+    }
+    else {
+        return;
     }
 }
 
@@ -190,8 +244,6 @@ function getComputerChoice() {
 //     computerScore = 0;
 //     humanScore = 0;
 // }
-
-
 
 
 
