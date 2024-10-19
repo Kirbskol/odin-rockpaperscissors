@@ -2,12 +2,67 @@
 humanScore = 0;
 computerScore = 0;
 
-function playGame() {
-    const totalRounds = 5;
-    for (let x = 0; x < totalRounds; x++){
-        playRound();
+// UI elements (work in progress)
+const container = document.querySelector("#container");
+
+const scoreboard = document.querySelector(".scoreboard");
+const scoreboardUser = document.querySelector(".scoreboard__user__score");
+const scoreboardCpu = document.querySelector(".scoreboard__cpu__score");
+scoreboardUser.textContent = `${humanScore}`;
+scoreboardCpu.textContent = `${computerScore}`;
+
+const buttons = document.querySelectorAll("button");
+const rockBtn = document.querySelector(".controls__rock__btn");
+const paperBtn = document.querySelector(".controls__paper__btn");
+const scissorsBtn = document.querySelector(".controls__scissors__btn");
+
+let humanChoice = "";
+
+rockBtn.addEventListener("click", () => {
+    humanChoice = "ROCK";
+    playRound();
+    });
+paperBtn.addEventListener("click", () => {
+    humanChoice = "PAPER";
+    playRound();
+    });
+scissorsBtn.addEventListener("click", () => {
+    humanChoice = "SCISSORS";
+    playRound();
+    });
+
+
+function playRound() {
+    while (humanScore != 5 && computerScore != 5){
+    const humanSelection = humanChoice;
+    const computerSelection = getComputerChoice();
+    console.log(`Player selects: ${humanSelection}\nComputer selects: ${computerSelection}`);
+    if (
+        (humanSelection == "ROCK" && computerSelection == "ROCK") || 
+        (humanSelection == "PAPER" && computerSelection == "PAPER") || 
+        (humanSelection == "SCISSORS" && computerSelection == "SCISSORS")
+    ) {
+        console.log(`TIE round. ${humanSelection} and ${humanSelection} don't beat each other!`);
+    } else if (
+        (humanSelection == "ROCK" && computerSelection == "SCISSORS") || 
+        (humanSelection == "PAPER" && computerSelection == "ROCK") || 
+        (humanSelection == "SCISSORS" && computerSelection == "PAPER")
+    ) {
+        console.log(`PLAYER wins the round. ${humanSelection} beats ${computerSelection}!`);
+        humanScore++;
+        scoreboardUser.textContent = `${humanScore}`;
+        return humanScore;
+    } else if (
+        (computerSelection == "ROCK" && humanSelection == "SCISSORS") || 
+        (computerSelection == "PAPER" && humanSelection == "ROCK") || 
+        (computerSelection == "SCISSORS" && humanSelection == "PAPER")
+    ) {
+        console.log(`COMPUTER wins the round. ${computerSelection} beats ${humanSelection}!`);
+        computerScore++;
+        scoreboardCpu.textContent = `${computerScore}`;
+        return computerScore;
+    };
     }
-    getResult();
 }
 
 /* uses random number generated * 120 to determine computerChoice, this is
@@ -35,67 +90,64 @@ function getComputerChoice() {
  * while loop used so only user input of "ROCK", "PAPER" or "SCISSORS" 
  * is accepted (this is case insensitive as input changed toUpperCase) 
  */
-function getHumanChoice() {
-    let humanChoice;
-    do{
-    let userInput = prompt("Choose your hand: ");
-    humanChoice = userInput.toUpperCase();
-    } while (
-        (humanChoice !== "ROCK") && 
-        (humanChoice !== "PAPER") && 
-        (humanChoice !== "SCISSORS")
-    );
-    return humanChoice;
-}
+// function getHumanChoice() {
+//     let humanChoice;
+//     do{
+//     let userInput = prompt("Choose your hand: ");
+//     humanChoice = userInput.toUpperCase();
+//     } while (
+//         (humanChoice !== "ROCK") && 
+//         (humanChoice !== "PAPER") && 
+//         (humanChoice !== "SCISSORS")
+//     );
+//     return humanChoice;
+// }
 
-function playRound() {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    console.log(`Player selects: ${humanSelection}\nComputer selects: ${computerSelection}`);
-    if (
-        (humanSelection == "ROCK" && computerSelection == "ROCK") || 
-        (humanSelection == "PAPER" && computerSelection == "PAPER") || 
-        (humanSelection == "SCISSORS" && computerSelection == "SCISSORS")
-    ) {
-        console.log(`TIE round. ${humanSelection} and ${humanSelection} don't beat each other!`);
-    } else if (
-        (humanSelection == "ROCK" && computerSelection == "SCISSORS") || 
-        (humanSelection == "PAPER" && computerSelection == "ROCK") || 
-        (humanSelection == "SCISSORS" && computerSelection == "PAPER")
-    ) {
-        console.log(`PLAYER wins the round. ${humanSelection} beats ${computerSelection}!`);
-        humanScore++;
-    } else if (
-        (computerSelection == "ROCK" && humanSelection == "SCISSORS") || 
-        (computerSelection == "PAPER" && humanSelection == "ROCK") || 
-        (computerSelection == "SCISSORS" && humanSelection == "PAPER")
-    ) {
-        console.log(`COMPUTER wins the round. ${computerSelection} beats ${humanSelection}!`);
-        computerScore++;
-    }
-    console.log(`PLAYER SCORE: ${humanScore}\nCOMPUTER SCORE: ${computerScore}`);
-}
+// function playRound() {
+//     const humanSelection = getHumanChoice();
+//     const computerSelection = getComputerChoice();
+//     console.log(`Player selects: ${humanSelection}\nComputer selects: ${computerSelection}`);
+//     if (
+//         (humanSelection == "ROCK" && computerSelection == "ROCK") || 
+//         (humanSelection == "PAPER" && computerSelection == "PAPER") || 
+//         (humanSelection == "SCISSORS" && computerSelection == "SCISSORS")
+//     ) {
+//         console.log(`TIE round. ${humanSelection} and ${humanSelection} don't beat each other!`);
+//     } else if (
+//         (humanSelection == "ROCK" && computerSelection == "SCISSORS") || 
+//         (humanSelection == "PAPER" && computerSelection == "ROCK") || 
+//         (humanSelection == "SCISSORS" && computerSelection == "PAPER")
+//     ) {
+//         console.log(`PLAYER wins the round. ${humanSelection} beats ${computerSelection}!`);
+//         humanScore++;
+//     } else if (
+//         (computerSelection == "ROCK" && humanSelection == "SCISSORS") || 
+//         (computerSelection == "PAPER" && humanSelection == "ROCK") || 
+//         (computerSelection == "SCISSORS" && humanSelection == "PAPER")
+//     ) {
+//         console.log(`COMPUTER wins the round. ${computerSelection} beats ${humanSelection}!`);
+//         computerScore++;
+//     }
+//     console.log(`PLAYER SCORE: ${humanScore}\nCOMPUTER SCORE: ${computerScore}`);
+// }
 
-function getResult() {
-    if (humanScore > computerScore) {
-        console.log("*** PLAYER WINS ***")
-    }
-    else if (humanScore < computerScore) {
-        console.log("*** COMPUTER WINS ***")
-    }
-    else if (humanScore == computerScore) {
-        console.log("*** NO-ONE WINS, TIE GAME ***")
-    }
-    computerScore = 0;
-    humanScore = 0;
-}
+// function getResult() {
+//     if (humanScore > computerScore) {
+//         console.log("*** PLAYER WINS ***")
+//     }
+//     else if (humanScore < computerScore) {
+//         console.log("*** COMPUTER WINS ***")
+//     }
+//     else if (humanScore == computerScore) {
+//         console.log("*** NO-ONE WINS, TIE GAME ***")
+//     }
+//     computerScore = 0;
+//     humanScore = 0;
+// }
 
-// UI elements (work in progress)
-const container = document.querySelector("#container");
 
-const scoreboard = document.querySelector(".scoreboard");
-const scoreboardUser = document.querySelector(".scoreboard__user__score");
-const scoreboardCpu = document.querySelector(".scoreboard__cpu__score");
-scoreboardUser.textContent = `${humanScore}`;
-scoreboardCpu.textContent = `${computerScore}`;
+
+
+
+
 
