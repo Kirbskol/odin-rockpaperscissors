@@ -86,6 +86,21 @@ function getComputerChoice() {
     return compChoice;
 }
 
+let i = 0;
+let placeholder = "";
+const txt = "Enter your name";
+const speed = 150;
+
+function type(){
+    placeholder += txt.charAt(i);
+    document.getElementById("start__input").setAttribute
+    ("placeholder",placeholder);
+    i++;
+    setTimeout(type,speed);
+}
+
+type();
+
 /* 
  * while loop used so only user input of "ROCK", "PAPER" or "SCISSORS" 
  * is accepted (this is case insensitive as input changed toUpperCase) 
