@@ -35,7 +35,6 @@ startBtn.addEventListener("click", () => {
         alert("Enter your name to continue!")
         return;
     }
-    // scoreboard variables are set to global as used across multiple functions
     humanScore = 0;
     computerScore = 0;
     noScore = 0;
@@ -45,7 +44,7 @@ startBtn.addEventListener("click", () => {
     displayUser.textContent = `${userName}`;
 })
 
-// UI elements (work in progress)
+// UI elements
 const scoreboard = document.querySelector(".scoreboard");
 const scoreboardUser = document.querySelector(".scoreboard__user__score");
 const scoreboardCpu = document.querySelector(".scoreboard__cpu__score");
@@ -78,7 +77,6 @@ scissorsBtn.addEventListener("click", () => {
     checkWinner();
     playRound();
     });
-
 
 function playRound() {
     while (humanScore != 5 && computerScore != 5){
