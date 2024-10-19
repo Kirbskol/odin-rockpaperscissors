@@ -1,9 +1,38 @@
+// home screen functions
+let i = 0;
+let placeholder = "";
+const txt = "ENTER YOUR NAME";
+const speed = 150;
+
+function type(){
+    placeholder += txt.charAt(i);
+    document.getElementById("start__input").setAttribute
+    ("placeholder",placeholder);
+    i++;
+    setTimeout(type,speed);
+}
+
+type();
+
+const startBtn = document.querySelector(".start__btn");
+const start = document.querySelector(".start");
+const container = document.querySelector("#container");
+const displayUser = document.querySelector(".scoreboard__user__title")
+let userNameRaw = "";
+let userName = "";
+startBtn.addEventListener("click", () => {
+    userNameRaw = document.getElementById("start__input").value;
+    userName = userNameRaw.toUpperCase();
+    start.style.display = "none";
+    container.style.display = "flex";
+    displayUser.textContent = `${userName}`;
+})
+
 // scoreboard variables are set to global as used across multiple functions
 humanScore = 0;
 computerScore = 0;
 
 // UI elements (work in progress)
-const container = document.querySelector("#container");
 
 const scoreboard = document.querySelector(".scoreboard");
 const scoreboardUser = document.querySelector(".scoreboard__user__score");
@@ -85,21 +114,6 @@ function getComputerChoice() {
     }
     return compChoice;
 }
-
-let i = 0;
-let placeholder = "";
-const txt = "Enter your name";
-const speed = 150;
-
-function type(){
-    placeholder += txt.charAt(i);
-    document.getElementById("start__input").setAttribute
-    ("placeholder",placeholder);
-    i++;
-    setTimeout(type,speed);
-}
-
-type();
 
 /* 
  * while loop used so only user input of "ROCK", "PAPER" or "SCISSORS" 
