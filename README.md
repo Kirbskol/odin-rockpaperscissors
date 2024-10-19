@@ -1,9 +1,11 @@
 # odin-rockpaperscissors
 
-This relates to the third project of The Odin Project, which is also the first within the Javascript Foundations Course.
+This relates to the third project of The Odin Project, which is also the first within the Javascript Foundations Course. Please note, this is my first time using Javascript, so I hope it's okay!
 
-The game is fully played within the console.log, as per the specifications of the project.
+Initially this game was built to be played entirely with console.log however I have now just finished the UI for the game.
 
-For this project I have been tasked to create a game of rock paper scissors, which lasts five rounds, and obtains input from the user
-as well as generates a random hand for the CPU each round. A scoreboard tracker is implented to track the scores after each round, and ultimately
-a winner is announced or a tie game.
+This includes:
+
+Start Screen where user will input their name.
+Game Screen, where users will select their hand and the game logic will run.
+Result Screen, where winner of each round is announced, and eventually... winner of the match!
